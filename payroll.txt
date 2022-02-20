@@ -1,0 +1,130 @@
+mport java.util.*;
+class Employee
+{
+    private String name,id,address,mail,mobile;
+    private double BP,DA,HRA,PF,SCF,GS,NS;
+    public void getEmployeeDetails(Scanner sc)
+    {
+        name=sc.nextLine();
+        id=sc.nextLine();
+        address=sc.nextLine();
+        mail=sc.nextLine();
+        mobile=sc.nextLine();
+    }
+    public void getBasicPay(Scanner sc)
+    {
+        BP=sc.nextDouble();
+        sc.nextLine();
+        paySlipCalc();
+    }
+    public void paySlipCalc()
+    {
+        DA=0.97*BP;
+        HRA=0.1*BP;
+        PF=0.12*BP;
+        SCF=0.001*BP;
+        GS=BP+DA+HRA;
+        NS=GS-PF-SCF;
+    }
+    public void printEmpDetails()
+    {
+        System.out.println("EMPLOYEE DETAILS");
+        System.out.println("Name: " + name);
+        System.out.println("Id: " + id);
+        System.out.println("Address: " + address);
+        System.out.println("Mail: " + mail);
+        System.out.println("Mobile: " + mobile);
+    }
+    public void printSlip(String emp)
+    {
+        System.out.println("PAY SLIP FOR "  +emp);
+        System.out.printf("BP: Rs. %.1f\n", BP);
+        System.out.printf("DA: Rs. %.1f\n", DA);
+        System.out.printf("HRA: Rs. %.1f\n", HRA);
+        System.out.printf("PF: Rs. %.1f\n", PF);
+        System.out.printf("Staff Club Fund: Rs. %.1f\n", SCF);
+        System.out.printf("Gross Salary: Rs. %.1f\n", GS);
+        System.out.printf("Net Salary: Rs. %.1f\n", NS);
+    }
+}
+class Programmer extends Employee
+{
+    public void printPaySlip()
+    {
+        printEmpDetails();
+        printSlip("PROGRAMMER");
+    }
+}
+class AssistantProfessor extends Employee
+{
+    public void printPaySlip()
+    {
+        printEmpDetails();
+        printSlip("ASSISTANT PROFESSOR");
+    }
+}
+class AssociateProfessor extends Employee
+{
+    public void printPaySlip()
+    {
+        printEmpDetails();
+        printSlip("ASSOCIATE PROFESSOR");
+    }
+}
+class Professor extends Employee
+{
+    public void printPaySlip()
+    {
+        printEmpDetails();
+        printSlip("PROFESSOR");
+    }
+}
+public class Hello {
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = Integer.parseInt(sc.nextLine());
+        for (int ctr = 1; ctr <= N; ctr++) {
+            int employeeType = Integer.parseInt(sc.nextLine());
+            switch (employeeType) {
+                case 1:
+                    Programmer programmer = new Programmer();
+                    if (!(programmer instanceof Employee)) {
+                        System.out.println("Employee Not Inherited");
+                    }
+                    programmer.getEmployeeDetails(sc);
+                    programmer.getBasicPay(sc);
+                    programmer.printPaySlip();
+                    break;
+ 
+                case 2:
+                    AssistantProfessor assistantProfessor = new AssistantProfessor();
+                    if (!(assistantProfessor instanceof Employee)) {
+                        System.out.println("Employee Not Inherited");
+                    }
+                    assistantProfessor.getEmployeeDetails(sc);
+                    assistantProfessor.getBasicPay(sc);
+                    assistantProfessor.printPaySlip();
+                    break;
+                case 3:
+                    AssociateProfessor associateProfessor = new AssociateProfessor();
+                    if (!(associateProfessor instanceof Employee)) {
+                        System.out.println("Employee Not Inherited");
+                    }
+                    associateProfessor.getEmployeeDetails(sc);
+                    associateProfessor.getBasicPay(sc);
+                    associateProfessor.printPaySlip();
+                    break;
+                case 4:
+                    Professor professor = new Professor();
+                    if (!(professor instanceof Employee)) {
+                        System.out.println("Employee Not Inherited");
+                    }
+                    professor.getEmployeeDetails(sc);
+                    professor.getBasicPay(sc);
+                    professor.printPaySlip();
+                    break;
+            }
+        }
+    }
+}
